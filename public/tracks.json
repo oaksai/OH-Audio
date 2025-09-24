@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "title": "Glass Garden",
+    "url": "/audio/glass-garden.mp3",
+    "genre": "Ambient",
+    "description": "Soft atmospheric pads with gentle reverb, perfect for contemplative moments and background ambiance.",
+    "tags": ["film", "ad", "contemplative", "soft"],
+    "created_at": "2024-01-15T10:00:00Z"
+  },
+  {
+    "id": "2",
+    "title": "Dusty Loop",
+    "url": "/audio/dusty-loop.mp3",
+    "genre": "Lofi",
+    "description": "Nostalgic lofi beat with vinyl crackle and warm analog textures.",
+    "tags": ["lofi", "nostalgic", "chill", "study"],
+    "created_at": "2024-01-14T15:30:00Z"
+  },
+  {
+    "id": "3",
+    "title": "Digital Dreams",
+    "url": "/audio/digital-dreams.mp3",
+    "genre": "Electronic",
+    "description": "Uplifting electronic composition with modern synths and driving percussion.",
+    "tags": ["upbeat", "modern", "commercial", "tech"],
+    "created_at": "2024-01-13T09:15:00Z"
+  },
+  {
+    "id": "4",
+    "title": "Morning Coffee",
+    "url": "/audio/morning-coffee.mp3",
+    "genre": "Jazz",
+    "description": "Smooth jazz with gentle piano and subtle bass line, perfect for cafes and relaxed settings.",
+    "tags": ["jazz", "cafe", "relaxed", "piano"],
+    "created_at": "2024-01-12T08:45:00Z"
+  }
+]
