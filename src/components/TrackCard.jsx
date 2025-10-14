@@ -4,12 +4,25 @@ import { Music } from 'lucide-react'
 const TrackCard = ({ track }) => {
   return (
     <div className="track-card">
+      {track.cover_art_url && (
+        <div className="track-cover">
+          <img 
+            src={track.cover_art_url} 
+            alt={track.title}
+            className="cover-art"
+            onError={(e) => {
+              e.target.style.display = 'none'
+            }}
+          />
+        </div>
+      )}
+      
       <div className="track-header">
         <div>
           <h3 className="track-title">{track.title}</h3>
           <span className="track-genre">{track.genre}</span>
         </div>
-        <Music size={24} style={{ color: '#667eea', opacity: 0.7 }} />
+        {!track.cover_art_url && <Music size={24} style={{ color: '#667eea', opacity: 0.7 }} />}
       </div>
 
       {track.description && (

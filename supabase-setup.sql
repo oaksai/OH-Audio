@@ -9,7 +9,9 @@ create table if not exists public.tracks (
   genre text not null,
   description text,
   tags text[],
-  created_at timestamp with time zone default now()
+  cover_art_url text,
+  created_at timestamp with time zone default now(),
+  updated_at timestamp with time zone default now()
 );
 
 -- Enable Row Level Security
@@ -58,8 +60,23 @@ insert into public.tracks (title, url, genre, description, tags) values
   ('Morning Coffee', '/audio/morning-coffee.mp3', 'Jazz', 'Smooth jazz with gentle piano and subtle bass line, perfect for cafes and relaxed settings.', array['jazz', 'cafe', 'relaxed', 'piano'])
 on conflict (id) do nothing;
 
+-- Add trigger to update updated_at timestamp
+create or replace function update_updated_at_column()
+returns trigger as $$
+begin
+  new.updated_at = now();
+  return new;
+end;
+$$ language plpgsql;
+
+create trigger update_tracks_updated_at
+  before update on public.tracks
+  for each row
+  execute function update_updated_at_column();
+
 -- Storage setup instructions:
 -- 1. Go to Storage in your Supabase dashboard
 -- 2. Create a new bucket called 'audio'
--- 3. Set the bucket to 'Public' if you want direct audio file access
--- 4. Or keep it private and implement signed URLs for more security
+-- 3. Create a new bucket called 'images' for cover art
+-- 4. Set both buckets to 'Public' if you want direct file access
+-- 5. Or keep them private and implement signed URLs for more security
