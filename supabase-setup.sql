@@ -10,6 +10,7 @@ create table if not exists public.tracks (
   description text,
   tags text[],
   cover_art_url text,
+  markers double precision[],
   created_at timestamp with time zone default now(),
   updated_at timestamp with time zone default now()
 );

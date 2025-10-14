@@ -1,7 +1,7 @@
 import React from 'react'
 import TrackCard from './TrackCard'
 
-const TrackGrid = ({ tracks }) => {
+const TrackGrid = ({ tracks, onTagClick, onGenreClick }) => {
   if (tracks.length === 0) {
     return (
       <div className="loading">
@@ -13,7 +13,12 @@ const TrackGrid = ({ tracks }) => {
   return (
     <div className="tracks-grid">
       {tracks.map((track, index) => (
-        <TrackCard key={track.id || index} track={track} />
+        <TrackCard 
+          key={track.id || index} 
+          track={track} 
+          onTagClick={onTagClick}
+          onGenreClick={onGenreClick}
+        />
       ))}
     </div>
   )

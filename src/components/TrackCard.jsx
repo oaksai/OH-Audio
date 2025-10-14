@@ -1,7 +1,8 @@
 import React from 'react'
 import { Music } from 'lucide-react'
+import AudioPlayer from './AudioPlayer'
 
-const TrackCard = ({ track }) => {
+const TrackCard = ({ track, onTagClick }) => {
   return (
     <div className="track-card">
       {track.cover_art_url && (
@@ -20,7 +21,13 @@ const TrackCard = ({ track }) => {
       <div className="track-header">
         <div>
           <h3 className="track-title">{track.title}</h3>
-          <span className="track-genre">{track.genre}</span>
+          <button 
+            className="track-genre" 
+            onClick={() => onGenreClick && onGenreClick(track.genre)}
+            aria-label={`Filter by ${track.genre}`}
+          >
+            {track.genre}
+          </button>
         </div>
         {!track.cover_art_url && <Music size={24} style={{ color: '#667eea', opacity: 0.7 }} />}
       </div>
@@ -32,27 +39,19 @@ const TrackCard = ({ track }) => {
       {track.tags && track.tags.length > 0 && (
         <div className="track-tags">
           {track.tags.map((tag, index) => (
-            <span key={index} className="tag">
+            <button 
+              key={index} 
+              className="tag"
+              onClick={() => onTagClick && onTagClick(tag)}
+              aria-label={`Filter by ${tag}`}
+            >
               {tag}
-            </span>
+            </button>
           ))}
         </div>
       )}
 
-      <audio 
-        className="audio-player" 
-        controls 
-        preload="metadata"
-        onError={(e) => {
-          console.error('Audio playback error:', e)
-          e.target.style.display = 'none'
-        }}
-      >
-        <source src={track.url} type="audio/mpeg" />
-        <source src={track.url} type="audio/wav" />
-        <source src={track.url} type="audio/ogg" />
-        Your browser does not support the audio element.
-      </audio>
+      <AudioPlayer src={track.url} title={track.title} />
     </div>
   )
 }
